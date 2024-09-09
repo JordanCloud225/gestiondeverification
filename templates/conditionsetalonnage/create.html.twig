@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello conditionsetalonnage{% endblock %}
+
+{% block body %}  
+ <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-6 col-lg-4">
+                          {{ form_start(form) }}
+
+                        <div class="form-group">
+                          <label for="email2">Norme</label>
+                       {{ form_widget(form.norme) }}
+                        </div>
+                        <div class="form-group">
+                          <label for="password">conditionenvironnemental</label>
+                            {{ form_widget(form.conditionenvironnemental) }}
+
+                        </div>
+
+                      
+                       
+                      </div>
+                     <div class="form-group mt-3">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success">{{ button_label|default('Enregistrer') }}</button>
+                <a href="{{ path('app_conditionsetalonnage') }}" class="btn btn-danger">Revenir à l'accueil</a>
+            </div>
+        </div> 
+                  </div>
+
+{% endblock %}

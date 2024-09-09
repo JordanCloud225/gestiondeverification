@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}controlejustesse{% endblock %}
+
+{% block body %}  
+ <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-6 col-lg-4">
+                          {{ form_start(form) }}
+
+                        <div class="form-group">
+                          <label for="email2">Code de l'instrument</label>
+                       {{ form_widget(form.instrument) }}
+                        </div> 
+                        <div class="form-group">
+                          <label for="email2">Point d'essai</label>
+                       {{ form_widget(form.pointsdessai) }}
+                        </div>
+                        <div class="form-group">
+                          <label for="password">Valeur nominale en <b>(kg)</b></label>
+                            {{ form_widget(form.valeurnominale) }}
+
+                        </div>
+                        <div class="form-group form-inline">
+                          <label class="col-md-3 col-form-label">Valeur lue en montee en <b>(kg)</b></label>
+                             {{ form_widget(form.valeurmonte) }}
+                        </div>
+                      
+                      </div>
+                      <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                          <label for="email2">Valeur lue en descente en <b>(kg)</b></label>
+                       {{ form_widget(form.valeurdescente) }}
+                        </div>
+                        <div class="form-group">
+                          <label for="password">Indication surchage de sensibilité en <b>(kg)</b></label>
+                            {{ form_widget(form.indicationsurchage) }}
+
+                        </div>
+                        <div class="form-group form-inline">
+                          <label class="col-md-3 col-form-label">Ecart releve</label>
+                             {{ form_widget(form.ecartreleve) }}
+                        </div>
+                        
+                      </div>                      
+                      </div>
+                     <div class="form-group mt-3">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success">{{ button_label|default('+ Contyrole de justesse') }}</button>
+                <a href="{{ path('app_controlejustesse') }}" class="btn btn-danger">Revenir à l'accueil</a>
+            </div>
+        </div> 
+                  </div>
+
+{% endblock %}

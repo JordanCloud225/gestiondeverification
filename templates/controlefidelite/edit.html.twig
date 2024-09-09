@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}controlefidelite{% endblock %}
+
+{% block body %}  
+ <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-6 col-lg-4">
+                          {{ form_start(form) }}
+
+                        <div class="form-group">
+                          <label for="email2">pointsdessai</label>
+                       {{ form_widget(form.pointsdessai) }}
+                        </div>
+                        <div class="form-group">
+                          <label for="password">Valeur nominale</label>
+                            {{ form_widget(form.valeurnominale) }}
+
+                        </div>
+                        <div class="form-group form-inline">
+                          <label class="col-md-3 col-form-label">indicationlue</label>
+                             {{ form_widget(form.indicationlue) }}
+                        </div>
+                      
+                      </div>
+                      <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                          <label for="email2">ecartreleve</label>
+                       {{ form_widget(form.ecartreleve) }}
+                        </div>
+                    
+                        <div class="form-group form-inline">
+                          <label class="col-md-3 col-form-label">ecartmaximalreleve</label>
+                             {{ form_widget(form.ecartmaximalreleve) }}
+                        </div>
+                        <div class="form-group form-inline">
+                          <label class="col-md-3 col-form-label">fidelitecorrecte</label>
+                             {{ form_widget(form.fidelitecorrecte) }}
+                        </div>
+                    
+                      </div>                      
+                      </div>
+                     <div class="form-group mt-3">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success">{{ button_label|default('Modifier') }}</button>
+                <a href="{{ path('app_controlefidelite') }}" class="btn btn-danger">Revenir à l'accueil</a>
+            </div>
+        </div> 
+                  </div>
+
+{% endblock %}

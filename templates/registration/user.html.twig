@@ -1,0 +1,98 @@
+{% extends 'accueil/index.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Gestion des Utilisateur</h3>
+        </div>
+        {% for message in app.flashes('message') %}
+            <div class="primary">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+
+
+        <div class="card-body">
+
+            <a href="{{ path('app_user_new') }}">Nouveau</a>
+
+            </a>
+
+            <hr style="visibility: hidden" />
+            <table class="table table-bordered" id="example" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+
+                        <th>Nom</th>
+                        <th>Photo</th>
+                        <th>Etat</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        <tr>
+
+                            <td>{{ user.nom }}</td>
+                            <td>
+                                {% if user.brochureFilename is not empty %}
+                               
+                                    
+                                       <td>
+                                <a href="{{ path('app_user_edit', {'id': user.id}) }}"><img src="{{ asset('uploads/brochures/'~user.brochureFilename )}}"    class="rounded-circle img-fluid" style="width: 150px;"/>  </a>
+
+                            
+                                {% else %}  
+                            
+                                <a href="{{ path('app_user_edit', {'id': user.id}) }}">   <span style="font-size: 1em; color: Dodgerblue;">
+                                        <i class="fas fa-edit" title="Modifier"></i>
+                                    </span></a>
+
+                            </td> {% endif %}
+                            
+                            <td>
+                                {% if user.deletedAt is null %} <label class="btn btn-success"> Actif</label> {% else %} <label class="btn btn-danger"> Inactif</label>  {% endif %}
+
+                            </td>
+
+
+                            <td>
+                              {% if user.deletedAt is null %}
+                                            <form method="post" action="{{ path('app_registration_delete', {'id': user.id}) }}" onsubmit="return confirm('Voulez-vous fermer ce compte?');">
+                                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+
+                                                <button class="btn">
+                                                    <span style="font-size: 1em; color: red;">
+                                                        <i class="fas fa-trash-alt" title="Fermer ce compte"></i>
+                                                    </span>
+                                                </button>
+                                            </form>
+
+                                        {% else %}
+
+
+
+
+                                            <form method="post" action="{{ path('app_registration_active', {'id': user.id}) }}" onsubmit="return confirm('Voulez-vous active ce compte?');">
+                                                <input type="hidden" name="_token" value="{{ csrf_token('active' ~ user.id) }}">
+
+                                                <button class="btn">
+                                                    <span style="font-size: 1em; color: blue;">
+                                                        <i class="fas fa-edit" title="Activer ce compte"></i>
+                                                    </span>
+                                                </button>
+                                            </form>
+                                        {% endif %}
+                            </td>
+                        </tr>
+                    {% else %}
+
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

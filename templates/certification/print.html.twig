@@ -1,0 +1,262 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Certificat de Vérification</title>
+    {% block stylesheets %}
+    <style type="text/css" media="print">
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            font-size: 14pt;
+        }
+        h1 {
+            text-align: center;
+            font-size: 24pt;
+            margin-bottom: 10px;
+        }
+        .certification-number {
+            text-align: center;
+            font-size: 16pt;
+            margin-bottom: 30px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        .header-left {
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .header-right {
+            text-align: right;
+        }
+        .section-title {
+            text-decoration: underline;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .properties {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .properties-left {
+            width: 50%;
+        }
+        .properties-right {
+            width: 50%;
+            text-align: right;
+        }
+        .center {
+           text-align: center;
+        }
+    </style>
+    {% endblock %}
+</head>
+<body>
+
+<table style="width: 100%">
+<thead>
+<tr>
+    <th style="text-align: left; width: 25%">
+        <img src="{{ logoSrc }}" 
+             style="border: 1px solid #ddd; border-radius: 4px; padding: 5px; width: 130px; height: 100px" 
+             alt="logo">
+    </th>
+    <th style="width: 40%"></th>
+    <th style="text-align: center; width: 35%">
+       <span style="font-size:12px"> CHAINE NATIONALE D'ETALONNAGE</span><br>
+        <b style="font-size:13px">MASSES</b><br>
+        Réference internationale<br>
+        <b>ACCREDITATION N° : {{ entreprise.accreditation }}</b><br>
+        <b>Portée disponible sur {{ entreprise.siteweb }}</b><br>
+    </th>
+</tr>
+</thead>
+</table>
+
+<!-- Titre principal -->
+<h1 style="text-align: center">CERTIFICAT DE VERIFICATION</h1>
+<h2 style="text-align: center">N° {{ instrument.codeinstrument }}</h2>
+
+<table style="width: 100%">
+    <thead class="heading">
+        <tr>
+            <th style="text-align: left" colspan="2">DELIVRE A :</th>
+            <th style="text-align: center">{{ instrument.client.nom }}<br><br>
+            ({{ instrument.client.ville }})
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><u><b>INSTRUMENT VERIFIE</b></u></td>
+        </tr>
+        <tr>
+            <td>Désignation: <b>{{ instrument.designation }}</b></td>
+        </tr>
+        <tr>
+            <td>Marque: <b>{{ instrument.marque }}</b></td>
+        </tr> 
+        <tr>
+            <td>Modèle: <b>{{ instrument.modele }}</b></td>
+        </tr> 
+        <tr>
+            <td colspan="2">N° SERIE: <b>{{ instrument.numeroserie }}</b></td>
+            <td style="text-align: center">Date de vérification : <b>{{ certification.dateverification|date('d/m/Y') }}</b></td>
+        </tr> 
+        <tr>
+            <td colspan="2">Portée max: <b>{{ instrument.porteemax }}</b></td>
+            <td style="text-align: center">Date d'émission : <b>{{ certification.dateemission|date('d/m/Y') }}</b></td>
+        </tr> 
+        <tr>
+            <td colspan="2">Portée mini: <b>{{ instrument.porteemini }}</b></td>
+            <td style="text-align: center">Validité : <b>{{ certification.validite|date('d/m/Y') }}</b></td>
+        </tr>
+        <tr>
+            <td>Classe de précision: <b>{{ instrument.classeprecision }}</b></td>
+        </tr> 
+        <tr>
+            <td>Echelon de vérification: <b>{{ instrument.echelonverification }}</b></td>
+        </tr> 
+        <tr>
+            <td colspan="2"><u><b>CONDTIONS D'ETALONNAGE</b></u></td>
+        </tr> 
+        <tr>
+            <td>Etalonnage selon la norme : <b>{{ certification.conditionsetalonnage.norme }}</b></td>
+        </tr> 
+        <tr>
+            {% if certification.conditionsetalonnage.conditionenvironnemental %}
+                <td>Conditions environnementales : <b>{{ certification.conditionsetalonnage.conditionenvironnemental }}</b></td>
+            {% elseif not certification.conditionsetalonnage.conditionenvironnemental %}
+                <td>Conditions environnementales : Aucune influence sur le classement</td>
+            {% endif %}
+        </tr>
+    </tbody>
+</table><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+<div>
+<h1 style="text-align: center"><u>RESULTAT D'ETALONNAGE</u></h1>
+
+<table border='1px'>
+    <thead>
+        <tr>
+            <td colspan="4"><b>Contrôle de fidélité</b>: à max/2: <b>{{ fidelite }}</b></td>
+                 <td colspan="3"> fidélité correcte? : <b>{{fidelitecorrecte}}</b></td>
+        </tr>
+        <tr>
+            <th scope="col">Point d'essai</th>
+            <th scope="col">valeur nominale</th>
+            <th scope="col">indication lue</th>
+            <th scope="col">ecart releve</th>
+            <th scope="col">ecart maximal releve</th>
+            <th colspan="2">Tolerance</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ctrlfidelites in ctrlfidelite %}
+        <tr>
+            <td style="text-align: center">{{ ctrlfidelites.pointsdessai }}</td>
+            <td style="text-align: center">{{ ctrlfidelites.valeurnominale }}</td>
+            <td style="text-align: center">{{ ctrlfidelites.indicationlue }}</td>
+            <td style="text-align: center">{{ ctrlfidelites.ecartreleve }}</td>
+            <td style="text-align: center">{{ ctrlfidelites.ecartmaximalreleve }}</td>
+            <td colspan="2" style="text-align: center">±{{ tolerance.valeur }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    <thead>
+        <tr>
+            <td colspan="4"><b>Contrôle de justesse</b></td>
+             <td colspan="3">  Justesse correcte?  <b>{{justessecorrecte}}</b><br>
+                   sensibilité correcte?  <b>{{justessecorrecte}}</b></td>
+        </tr>
+        <tr>
+            <th scope="col">Point d'essai</th>
+            <th scope="col">valeur nominale</th>
+            <th scope="col">Valeur lue en montée</th>
+            <th scope="col">Valeur lue en descente</th>
+            <th scope="col">Indication + surcharge de sensibilité</th>
+            <th scope="col">ecart releve</th>
+            <th scope="col">Tolerance</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ctrljustesses in ctrljustesse %}
+        <tr>
+            <td style="text-align: center">{{ ctrljustesses.pointsdessai }}</td>
+            <td style="text-align: center">{{ ctrljustesses.valeurnominale }}</td>
+            <td style="text-align: center">{{ ctrljustesses.valeurmonte }}</td>
+            <td style="text-align: center">{{ ctrljustesses.valeurdescente }}</td>
+            <td style="text-align: center">{{ ctrljustesses.indicationsurchage }}</td>
+            <td style="text-align: center">{{ ctrljustesses.ecartreleve }}</td>
+            <td style="text-align: center">±{{ tolerance.valeur }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    <thead>
+        <tr>
+            <td colspan="4"><b>Contrôle d'excentration</b>: à max/3: <b>{{ excentration }}</b></td>
+             <td colspan="3"> Excentration correcte?  <b>{{excentrationcorrecte}}</b></td>
+        </tr>
+        <tr>
+            <th scope="col">Numero de position</th>
+            <th scope="col">valeur nominale</th>
+            <th scope="col">indication lue</th>
+            <th scope="col">Indication + surcharge de sensibilité</th>
+            <th scope="col">ecartreleve</th>
+            <th colspan="2">Tolerance</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ctrlexcentrations in ctrlexcentration %}
+        <tr>
+            <td style="text-align: center">{{ ctrlexcentrations.numposition }}</td>
+            <td style="text-align: center">{{ ctrlexcentrations.valeurnominale }}</td>
+            <td style="text-align: center">{{ ctrlexcentrations.indicationlue }}</td>
+            <td style="text-align: center">{{ ctrlexcentrations.indicationsurcharge }}</td>
+            <td style="text-align: center">{{ ctrlexcentrations.ecartreleve }}</td>
+            <td colspan="2">±{{ tolerance.valeur }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    <thead>
+        <tr>
+            <td colspan="4"><br>Croquis du récepteur et position de la charge<br><br><br></td>
+            <td colspan="3">
+            <table border='0'>
+            <thead>
+            <tr>
+            <th>1</th>
+            <th></th>
+            <th>3</th>
+            </tr>
+            <tr>
+            </tr>
+             <tr>
+            <th>2</th>
+            <th></th>
+            <th>4</th>
+            </tr>
+            </thead>
+            </table>
+            </td>
+        </tr>  
+        <tr>
+        {% if conforme == 'CONFORME' %}
+            <td colspan="7"><br>Etat de l'instrument contrôlé:<b style="color: green">{{conforme}}</b><br>
+                            Contrôle conforme à la norme <b>{{ entreprise.norme }}</b><br><br></td>
+            {% elseif conforme == 'NON CONFORME' %}
+            <td colspan="7"><br>Etat de l'instrument contrôlé:<b style="color: red">{{conforme}}</b><br>
+                Contrôle conforme à la norme <b>{{ entreprise.norme }}</b><br><br></td>
+                {% else %}
+               <td> Aucune information reçu</td>
+                {% endif %}
+        </tr>
+    </thead>
+</table>
+
+</div>
+</html>

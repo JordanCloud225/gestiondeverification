@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello InstrumentController!{% endblock %}
+
+{% block body %}
+ <div class="row">
+              <div class="col-md-12">
+              <a href="{{ path('app_instrument_create')}}"><button class="btn btn-secondary"><span class="btn-label"><i class="fa fa-plus"></i></span>Instrument</button></a>
+                <div class="card">
+                  <div class="card-header">
+                    <div class="d-flex align-items-center">
+                      <h4 class="card-title">Instruments</h4>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <!-- Modal -->
+                    <div class="table-responsive">
+                      <table class="display table table-striped table-hover">
+                        <thead>
+                          <tr>
+                            <th>Designation</th>
+                            <th>Marque</th>
+                            <th>Modèle</th>
+                            <th>N° de serie</th>
+                            <th>Portée max</th>
+                            <th>Portée mini</th>
+                            <th>Classe de précision</th>
+                            <th>Echelon de verification</th>
+                            <th style="width: 10%">Action</th>
+                          </tr>
+                        </thead>
+                        <tfoot>
+                          <tr>
+                            <th>Designation</th>
+                            <th>Marque</th>
+                            <th>Modèle</th>
+                            <th>N° de serie</th>
+                            <th>Portée max</th>
+                            <th>Portée mini</th>
+                            <th>Classe de précision</th>
+                            <th>Echelon de verification</th>
+                            <th style="width: 10%">Action</th>                           
+                          </tr>
+                        </tfoot>
+                        <tbody>
+                         {% for instruments in instrument %}
+                        <tr>
+                             <td>{{ instruments.designation}}</td>
+                             <td>{{ instruments.marque}}</td>
+                             <td>{{ instruments.modele}}</td>
+                             <td>{{ instruments.numeroserie}}</td>
+                             <td>{{ instruments.porteemax}}</td>
+                             <td>{{ instruments.porteemini}}</td>
+                             <td>{{ instruments.classeprecision}}</td>
+                             <td>{{ instruments.echelonverification}}</td>
+
+                               <td>
+                              <div class="form-button-action">
+                            <a href="{{ path('app_instrument_edit', {'id': instruments.id})}}" >
+                                <button class="btn btn-link btn-primary btn-lg">
+                                  <i class="fa fa-edit"></i>
+                                </button> </a>
+                             <a href="{{ path('app_instrument_delete', {'id': instruments.id})}}" >
+                             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~instruments.id)}}">
+                                <button >
+                                  <i class="fa fa-times"></i>
+                                </button></a>
+                              </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+{% endblock %}
+

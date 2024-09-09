@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}designation{% endblock %}
+
+{% block body %}
+ <div class="row">
+              <div class="col-md-12">
+              <a href="{{ path('app_designation_create')}}"><button class="btn btn-secondary"><span class="btn-label"><i class="fa fa-plus"></i></span>Nouvelle designation</button></a>
+                <div class="card">
+                  <div class="card-header">
+                    <div class="d-flex align-items-center">
+                      <h4 class="card-title">Liste des designations</h4>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <!-- Modal -->
+                 
+
+                    <div class="table-responsive">
+                      <table class="display table table-striped table-hover">
+                        <thead>
+                          <tr>
+                            <th>nom</th>
+                            <th style="width: 10%">Action</th>
+                          </tr>
+                        </thead>
+                        <tfoot>
+                          <tr>
+                            <th>nom</th>
+                            <th style="width: 10%">Action</th>                         
+                          </tr>
+                        </tfoot>
+                        <tbody>
+                         {% for designations in designation %}
+                        <tr>
+                             <td>{{ designations.libelle}}</td>
+                             <td>
+                              <div class="form-button-action">
+                            <a href="{{ path('app_designation_edit',{'id': designations.id})}}" >
+
+                                <button
+                                  class="btn btn-link btn-primary btn-lg"
+                                >
+                                  <i class="fa fa-edit"></i>
+                                </button> </a>
+                                <a href="{{ path('app_designation_delete',{'id': designations.id})}}" >
+                                <button>
+                                  <i class="fa fa-times"></i>
+                                </button>
+                              </div>
+                            </td>
+
+                        </tr>
+
+                                                  {% endfor %}
+
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+{% endblock %}
+

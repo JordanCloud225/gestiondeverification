@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello Certification Controller!{% endblock %}
+
+{% block body %}  
+ <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-6 col-lg-4">
+                          {{ form_start(form) }}
+
+                         <div class="form-group">
+                          <label for="password">instrument</label>
+                            {{ form_widget(form.instrument) }}
+                        </div>
+
+                        <div class="form-group">
+                          <label for="email2">date de verification</label>
+                       {{ form_widget(form.dateverification) }}
+                        </div>
+                       
+                        <div class="form-group form-inline">
+                          <label
+                            class="col-md-3 col-form-label"
+                            >date emission</label>
+                             {{ form_widget(form.dateemission) }}
+                        </div>
+                      
+                      </div>
+                      <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                          <label for="email2">validite</label>
+                       {{ form_widget(form.validite) }}
+                        </div>
+                       
+                        <div class="form-group form-inline">
+                          <label
+                            class="col-md-3 col-form-label"
+                            >conditions etalonnage</label>
+                             {{ form_widget(form.conditionsetalonnage) }}
+                        </div>
+                      
+                       
+                      </div>
+                     <div class="form-group mt-3">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success">{{ button_label|default('Enregistrer') }}</button>
+                <a href="{{ path('app_certification') }}" class="btn btn-danger">Revenir à l'accueil</a>
+            </div>
+        </div> 
+                  </div>
+
+{% endblock %}

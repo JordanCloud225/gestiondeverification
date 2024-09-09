@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello InstrumentController!{% endblock %}
+
+{% block body %}  
+ <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-6 col-lg-4">
+                          {{ form_start(form) }}
+
+                        <div class="form-group">
+                          <label for="email2">Designation</label>
+                       {{ form_widget(form.designation) }}
+                        </div>
+                        <div class="form-group">
+                          <label for="password">Marque</label>
+                            {{ form_widget(form.marque) }}
+
+                        </div>
+                        <div class="form-group form-inline">
+                          <label
+                            class="col-md-3 col-form-label"
+                            >Modèle</label>
+                             {{ form_widget(form.modele) }}
+                        </div>
+                      
+                      </div>
+                      <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                          <label for="email2">N° de série</label>
+                       {{ form_widget(form.numeroserie) }}
+                        </div>
+                        <div class="form-group">
+                          <label for="password">Portée max</label>
+                            {{ form_widget(form.porteemax) }}
+
+                        </div>
+                        <div class="form-group form-inline">
+                          <label
+                            class="col-md-3 col-form-label"
+                            >Portée mini</label>
+                             {{ form_widget(form.porteemini) }}
+                        </div>
+                      
+                      </div>
+                      <div class="col-md-6 col-lg-4">
+                          <div class="form-group">
+                          <label for="email2">Classe de précision</label>
+                       {{ form_widget(form.classeprecision) }}
+                        </div>
+                        <div class="form-group">
+                          <label for="password">Echelon de vérification</label>
+                            {{ form_widget(form.echelonverification) }}
+                        </div>
+                         <div class="form-group">
+                          <label>Tolerance en +/- <strong>(kg)</strong></label>
+                            {{ form_widget(form.tolerance) }}
+                        </div> 
+                     <div class="form-group mt-3">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success">{{ button_label|default('Modifier') }}</button>
+                <a href="{{ path('app_instrument') }}" class="btn btn-danger">Revenir à l'accueil</a>
+            </div>
+        </div> 
+                  </div>
+
+{% endblock %}

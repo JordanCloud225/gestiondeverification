@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}client{% endblock %}
+
+{% block body %}  
+ <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-6 col-lg-4">
+                          {{ form_start(form) }}
+
+                        <div class="form-group">
+                          <label for="email2">Nom</label>
+                       {{ form_widget(form.nom) }}
+                        </div>
+                      </div>                      
+                      </div>
+                     <div class="form-group mt-3">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success">{{ button_label|default('Modifier') }}</button>
+                <a href="{{ path('app_client') }}" class="btn btn-danger">Revenir à l'accueil</a>
+            </div>
+        </div> 
+                  </div>
+
+{% endblock %}

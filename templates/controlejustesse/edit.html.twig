@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}controlejustesse{% endblock %}
+
+{% block body %}  
+ <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-6 col-lg-4">
+                          {{ form_start(form) }}
+
+                        <div class="form-group">
+                          <label for="email2">Point d'essai</label>
+                       {{ form_widget(form.pointsdessai) }}
+                        </div>
+                        <div class="form-group">
+                          <label for="password">Valeur nominale</label>
+                            {{ form_widget(form.valeurnominale) }}
+
+                        </div>
+                        <div class="form-group form-inline">
+                          <label class="col-md-3 col-form-label">valeur lue en montee</label>
+                             {{ form_widget(form.valeurmonte) }}
+                        </div>
+                      
+                      </div>
+                      <div class="col-md-6 col-lg-4">
+                            <div class="form-group">
+                          <label for="email2">valeurdescente</label>
+                       {{ form_widget(form.valeurdescente) }}
+                        </div>
+                        <div class="form-group">
+                          <label for="password">indicationsurchage</label>
+                            {{ form_widget(form.indicationsurchage) }}
+
+                        </div>
+                        <div class="form-group form-inline">
+                          <label class="col-md-3 col-form-label">ecartreleve</label>
+                             {{ form_widget(form.ecartreleve) }}
+                        </div>
+                        <div class="form-group form-inline">
+                          <label class="col-md-3 col-form-label">justessecorrecte</label>
+                             {{ form_widget(form.justessecorrecte) }}
+                        </div>
+                        <div class="form-group form-inline">
+                          <label class="col-md-3 col-form-label">sensibilitecorrecte</label>
+                             {{ form_widget(form.sensibilitecorrecte) }}
+                        </div>
+                      </div>                      
+                      </div>
+                     <div class="form-group mt-3">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success">{{ button_label|default('modifier') }}</button>
+                <a href="{{ path('app_controlejustesse') }}" class="btn btn-danger">Revenir à l'accueil</a>
+            </div>
+        </div> 
+                  </div>
+
+{% endblock %}

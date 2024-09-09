@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello InstrumentController!{% endblock %}
+
+{% block body %}
+ <div class="row"> 
+              <div class="col-md-12">
+              <a href="{{ path('app_certification_create')}}"><button class="btn btn-secondary"><span class="btn-label"><i class="fa fa-plus"></i></span>Certificat</button></a>
+                <div class="card">
+                  <div class="card-header">
+                    <div class="d-flex align-items-center">
+                      <h4 class="card-title">Certification</h4>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <!-- Modal -->
+                 
+
+                    <div class="table-responsive">
+                      <table class="display table table-striped table-hover">
+                        <thead>
+                          <tr>
+                              <th>Numéro du certificat</th>
+                            <th>Date d'émission</th>
+                            <th>Date de vérification</th>
+                            <th>Validité</th>
+                            <th style="width: 10%">Action</th>
+                          </tr>
+                        </thead>
+                        <tfoot>
+                          <tr>
+                           <th>Numéro du certificat</th>
+                            <th>Date d'émission</th>
+                            <th>Date de vérification</th>
+                            <th>Validité</th>
+                            <th style="width: 10%">Action</th>                          
+                          </tr>
+                        </tfoot>
+                        <tbody>
+                         {% for certifications in certification %}
+                        <tr>
+                             <td>{{ certifications.numerocertificat}}</td>
+                             <td>{{ certifications.dateemission|date('d/m/Y')}}</td>
+                             <td>{{ certifications.dateverification|date('d/m/Y')}}</td>
+                             <td>{{ certifications.validite|date('d/m/Y')}}</td>
+
+                          <td>
+                              <div class="form-button-action">
+                            <a href="{{ path('app_certification_edit',{'id': certifications.id})}}" >
+
+                                <button
+                                  class="btn btn-link btn-primary btn-lg" >
+                                <i class="fa fa-edit"></i>
+                                </button></a>
+                                <a href="{{ path('app_certification_delete',{'id': certifications.id})}}" >
+                                <button >
+                                  <i class="fa fa-times"></i>
+                                </button></a>
+                                <a href="{{ path('app_certification_print',{'id': certifications.id})}}" >
+                                <button >
+                                  <i class="fas fa-print"></i>
+                                </button></a>
+                              </div>
+                            </td>
+
+                        </tr>
+                           {% endfor %}
+
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+{% endblock %}
+

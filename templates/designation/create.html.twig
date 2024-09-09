@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}designation{% endblock %}
+
+{% block body %}  
+ <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-6 col-lg-4">
+                          {{ form_start(form) }}
+
+                        <div class="form-group">
+                          <label >nom</label>
+                       {{ form_widget(form.libelle) }}
+                        </div>
+                      </div>                      
+                      </div>
+                     <div class="form-group mt-3">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success">{{ button_label|default('Enregistrer') }}</button>
+                <a href="{{ path('app_designation') }}" class="btn btn-danger">Revenir à l'accueil</a>
+            </div>
+        </div> 
+                  </div>
+
+{% endblock %}

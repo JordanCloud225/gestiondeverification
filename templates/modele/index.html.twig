@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modele{% endblock %}
+
+{% block body %}
+ <div class="row">
+              <div class="col-md-12">
+              <a href="{{ path('app_modele_create')}}"><button class="btn btn-secondary"><span class="btn-label"><i class="fa fa-plus"></i></span>Nouveau modèle</button></a>
+                <div class="card">
+                  <div class="card-header">
+                    <div class="d-flex align-items-center">
+                      <h4 class="card-title">Liste des modeles</h4>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <!-- Modal -->
+                 
+
+                    <div class="table-responsive">
+                      <table class="display table table-striped table-hover">
+                        <thead>
+                          <tr>
+                            <th>Libelle</th>
+                            <th style="width: 10%">Action</th>
+                          </tr>
+                        </thead>
+                        <tfoot>
+                          <tr>
+                            <th>Libelle</th>
+                            <th style="width: 10%">Action</th>                         
+                          </tr>
+                        </tfoot>
+                        <tbody>
+                         {% for modeles in modele %}
+                        <tr>
+                             <td>{{ modeles.libelle}}</td>
+                             <td>
+                              <div class="form-button-action">
+                            <a href="{{ path('app_modele_edit',{'id': modeles.id})}}" >
+
+                                <button
+                                  class="btn btn-link btn-primary btn-lg"
+                                >
+                                  <i class="fa fa-edit"></i>
+                                </button> </a>
+                                <a href="{{ path('app_modele_delete',{'id': modeles.id})}}" >
+                                <button>
+                                  <i class="fa fa-times"></i>
+                                </button>
+                              </div>
+                            </td>
+
+                        </tr>
+
+                                                  {% endfor %}
+
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+{% endblock %}
+

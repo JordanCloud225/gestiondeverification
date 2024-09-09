@@ -1,0 +1,36 @@
+<?php
+
+namespace App\Form;
+
+use App\Entity\Tolerance;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+
+class ToleranceType extends AbstractType
+{
+    public function buildForm(FormBuilderInterface $builder, array $options): void
+    {
+        $builder
+            ->add('valeur',null,[
+                'attr' =>[
+                'class' => 'form-control',
+            ]
+        ])
+            ->add('unitemesure',null,[
+                'attr' =>[
+                'class' => 'form-control',
+            ]
+        ])
+        ;
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' => Tolerance::class,
+            'csrf_protection' => false,
+
+        ]);
+    }
+}

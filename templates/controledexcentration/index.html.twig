@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}controledexcentration{% endblock %}
+
+{% block body %}
+ <div class="row">
+              <div class="col-md-12">
+              <a href="{{ path('app_controledexcentration_create')}}"><button class="btn btn-secondary"><span class="btn-label"><i class="fa fa-plus"></i></span>Nouveau controledexcentration</button></a>
+                <div class="card">
+                  <div class="card-header">
+                    <div class="d-flex align-items-center">
+                      <h4 class="card-title">Liste des controledexcentration</h4>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <!-- Modal -->
+                 
+
+                    <div class="table-responsive">
+                      <table class="display table table-striped table-hover">
+                        <thead>
+                          <tr>
+                            <th>numposition</th>
+                            <th>Valeur nominale</th>
+                            <th>indicationlue</th>
+                            <th>indicationsurcharge</th>
+                            <th>ecartreleve</th>
+                            <th>croquisetposition</th>
+                            <th>Tolérance</th>                                                        
+                            <th>excentrationcorrecte ?</th>                                                        
+                            <th style="width: 10%">Action</th>
+                          </tr>
+                        </thead>
+                        <tfoot>
+                          <tr>
+                            <th>numposition</th>
+                            <th>Valeur nominale</th>
+                            <th>indicationlue</th>
+                            <th>indicationsurcharge</th>
+                            <th>ecartreleve</th>
+                            <th>croquisetposition</th>                            
+                            <th>Tolérance</th>                            
+                            <th>excentrationcorrecte ?</th>                                                        
+                            <th style="width: 10%">Action</th>                         
+                          </tr>
+                        </tfoot>
+                        <tbody>
+                         {% for controledexcentrations in controledexcentration %}
+                        <tr>
+                             <td>{{ controledexcentrations.numposition}}</td>
+                             <td>{{ controledexcentrations.valeurnominale}}</td>
+                             <td>{{ controledexcentrations.indicationlue}}</td>
+                             <td>{{ controledexcentrations.indicationsurcharge	}}</td>
+                             <td>{{ controledexcentrations.ecartreleve}}</td>
+                             <td>{{ controledexcentrations.croquisetposition}}</td>
+                             <td>{{ controledexcentrations.instrument ? controledexcentrations.instrument.tolerance.Valeur }}</td>
+                             <td>{{ controledexcentrations.excentrationcorrecte}}</td>
+                              <td>
+                              <div class="form-button-action">
+                            <a href="{{ path('app_controledexcentration_edit', {'id': controledexcentrations.id})}}" >
+
+                                <button
+                                  class="btn btn-link btn-primary btn-lg"
+                                >
+                                  <i class="fa fa-edit"></i>
+                                </button> </a>
+                               <a href="{{ path('app_controledexcentration_delete', {'id': controledexcentrations.id})}}" >
+
+                                <button>
+                                  <i class="fa fa-times"></i>
+                                </button>
+                              </div>
+                            </td>
+                        </tr>
+                           {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+{% endblock %}
+

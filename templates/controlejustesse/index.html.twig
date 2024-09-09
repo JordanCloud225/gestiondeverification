@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}controle de justesse{% endblock %}
+
+{% block body %}
+ <div class="row">
+              <div class="col-md-12">
+              <a href="{{ path('app_controlejustesse_create')}}"><button class="btn btn-secondary"><span class="btn-label"><i class="fa fa-plus"></i></span>Nouveau controle de justesse</button></a>
+                <div class="card">
+                  <div class="card-header">
+                    <div class="d-flex align-items-center">
+                      <h4 class="card-title">Liste des contrôles de justesse</h4>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <!-- Modal -->
+                 
+
+                    <div class="table-responsive">
+                      <table class="display table table-striped table-hover">
+                        <thead>
+                          <tr>
+                            <th>Points d'essais</th>
+                            <th>Valeur nominale</th>
+                            <th>valeur lue en montée</th>
+                            <th>valeur lue en descente</th>
+                            <th>indication surchage</th>
+                            <th>ecart relevé</th> 
+                            <th>Tolérance</th>                                                       
+                            <th>justesse correcte ?</th>                            
+                            <th>Sensibilité correcte ?</th>                            
+                            <th>Tolérance</th>
+                            <th style="width: 10%">Action</th>
+                          </tr>
+                        </thead>
+                        <tfoot>
+                          <tr>
+                             <th>Points d'essai</th>
+                            <th>Valeur nominale</th>
+                            <th>valeur lue en montée</th>
+                            <th>valeur lue en descente</th>
+                            <th>indication surchage</th>
+                            <th>ecart relevé</th>                            
+                            <th>Tolérance</th>                            
+                            <th>justesse correcte ?</th>                            
+                            <th>Sensibilité correcte ?</th>                            
+                            <th style="width: 10%">Action</th>                          
+                          </tr>
+                        </tfoot>
+                        <tbody>
+                         {% for controlejustesses in controlejustesse %}
+                        <tr>
+                             <td>{{ controlejustesses.pointsdessai}}</td>
+                             <td>{{ controlejustesses.valeurnominale}}</td>
+                             <td>{{ controlejustesses.valeurmonte}}</td>
+                             <td>{{ controlejustesses.valeurdescente}}</td>
+                             <td>{{ controlejustesses.indicationsurchage}}</td>
+                             <td>{{ controlejustesses.ecartreleve}}</td>
+                             <td>{{ controlejustesses.instrument ? controlejustesses.instrument.tolerance.Valeur }}</td>
+                             <td>{{ controlejustesses.justessecorrecte}}</td>
+                             <td>{{ controlejustesses.sensibilitecorrecte}}</td>
+                               <td>
+                              <div class="form-button-action">
+                            <a href="{{ path('app_controlejustesse_edit', {'id': controlejustesses.id})}}" >
+
+                                <button
+                                  class="btn btn-link btn-primary btn-lg"
+                                >
+                                  <i class="fa fa-edit"></i>
+                                </button> </a>
+                               <a href="{{ path('app_controlejustesse_delete', {'id': controlejustesses.id})}}" >
+
+                                <button>
+                                  <i class="fa fa-times"></i>
+                                </button>
+                                
+
+                              </div>
+                            </td>
+                              </tr>
+                              {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+{% endblock %}
+

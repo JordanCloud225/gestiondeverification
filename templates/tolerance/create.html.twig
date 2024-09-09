@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Client{% endblock %}
+
+{% block body %}  
+ <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-6 col-lg-4">
+                          {{ form_start(form) }}
+
+                        <div class="form-group">
+                          <label >Valeur</label>
+                       {{ form_widget(form.valeur) }}
+                        </div> 
+                        <div class="form-group">
+                          <label >Unité de mesure</label>
+                       {{ form_widget(form.unitemesure) }}
+                        </div>
+                      </div>                      
+                      </div>
+                     <div class="form-group mt-3">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success">{{ button_label|default('Enregistrer') }}</button>
+                <a href="{{ path('app_client') }}" class="btn btn-danger">Revenir à l'accueil</a>
+            </div>
+        </div> 
+                  </div>
+
+{% endblock %}

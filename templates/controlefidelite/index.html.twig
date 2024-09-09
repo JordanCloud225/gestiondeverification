@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}controlefidelite{% endblock %}
+
+{% block body %}
+ <div class="row">
+              <div class="col-md-12">
+              <a href="{{ path('app_controlefidelite_create')}}"><button id="addButton" class="btn btn-secondary"><span class="btn-label"><i class="fa fa-plus"></i></span>Ajouter des contrôles de fidélité</button></a>
+                <div class="card">
+                  <div class="card-header">
+                    <div class="d-flex align-items-center">
+                      <h4 class="card-title">Liste des controles fidelite</h4>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <!-- Modal -->
+                 
+
+                    <div class="table-responsive">
+                      <table class="display table table-striped table-hover">
+                        <thead>
+                          <tr>
+                            <th>pointsdessai</th>
+                            <th>Valeur nominale</th>
+                            <th>indicationlue</th>
+                            <th>ecartreleve</th>
+                            <th>ecartmaximalreleve</th> 
+                            <th>Tolérance</th>                                                       
+                            <th>fidelitecorrecte ?</th>                                                        
+                            <th style="width: 10%">Action</th>  
+                          </tr>
+                        </thead>
+                        <tfoot>
+                          <tr>
+                            <th>pointsdessai</th>
+                            <th>Valeur nominale</th>
+                            <th>indicationlue</th>
+                            <th>ecartreleve</th>
+                            <th>ecartmaximalreleve</th>                            
+                            <th>Tolérance</th>                            
+                            <th>fidelitecorrecte ?</th>                                                        
+                            <th style="width: 10%">Action</th>                         
+                          </tr>
+                        </tfoot>
+                        <tbody>
+                         {% for controlefidelites in controlefidelite %}
+                        <tr>
+                             <td>{{ controlefidelites.pointsdessai}}</td>
+                             <td>{{ controlefidelites.valeurnominale}}</td>
+                             <td>{{ controlefidelites.indicationlue}}</td>
+                             <td>{{ controlefidelites.ecartreleve	}}</td>
+                             <td>{{ controlefidelites.ecartmaximalreleve}}</td>
+                             <td>{{ controlefidelites.instrument ? controlefidelites.instrument.tolerance.Valeur }}</td>
+                             <td>{{ controlefidelites.fidelitecorrecte}}</td>
+                              <td>
+                              <div class="form-button-action">
+                            <a href="{{ path('app_controlefidelite_edit', {'id': controlefidelites.id})}}" >
+
+                                <button
+                                  class="btn btn-link btn-primary btn-lg"
+                                >
+                                  <i class="fa fa-edit"></i>
+                                </button> </a>
+                                 <a href="{{ path('app_controlefidelite_delete', {'id': controlefidelites.id})}}" >
+
+                                <button>
+                                  <i class="fa fa-times"></i>
+                                </button>
+                              </div>
+                            </td>
+                        </tr>
+                           {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+{% endblock %}
+
