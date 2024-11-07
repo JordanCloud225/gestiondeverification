@@ -104,7 +104,9 @@ class CertificationController extends AbstractController
         $ctrlfidelite = $controlefideliteRepository->findBy(['instrument' => $instrument]);
         $ctrljustesse = $controlejustesseRepository->findBy(['instrument' => $instrument]);
         $ctrlexcentration = $controledexcentrationRepository->findBy(['instrument' => $instrument]);
-
+        $fidelitecorrecte = null;
+        $excentrationcorrecte = null;
+        $justessecorrecte = null;
         $a = [];
     foreach ($ctrlfidelite as $key => $controlefidelite) {
         $valeurNominale = $controlefidelite->getValeurNominale();
@@ -123,25 +125,7 @@ class CertificationController extends AbstractController
                 $fidelitecorrecte = 'oui';
             }
         }
-              $a = [];
-    foreach ($ctrlfidelite as $key => $controlefidelite) {
-        $valeurNominale = $controlefidelite->getValeurNominale();
-        $indicationLue = $controlefidelite->getIndicationLue();
-            $margeInferieure = $valeurNominale - 10;
-            $margeSuperieure = $valeurNominale + 10;
-    
-            if ($indicationLue >= $margeInferieure && $indicationLue <= $margeSuperieure) {
-                    $a[$key] = 'oui';
-            }else{
-                $a[$key] = 'non';
-            }
-            if (in_array('non',$a)){
-                $fidelitecorrecte = 'non';
-            }else {
-                $fidelitecorrecte = 'oui';
-            }
-        }
-        $b = [];
+              $b = [];
         foreach ($ctrlexcentration as $key => $controledexcentration) {
             $valeurNominale = $controledexcentration->getValeurNominale();
             $indicationLue = $controledexcentration->getIndicationLue();
