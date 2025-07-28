@@ -1,0 +1,161 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello InstrumentController!{% endblock %}
+
+{% block body %}  
+               <div class="card-body">
+               <h2 class="text-center">FICHE D'INTERVENTION</h2>
+                    <div class="row">
+                    <div class="card">
+                      <div class="row">
+                        <div class="card-header"><div class="card-title">CLIENT</div></div>
+                        <div class="offset-2 col-md-6 col-lg-4">
+                            {{ form_start(form) }}
+                          <div class="form-group">
+                            <label >Client</label>
+                            {{ form_widget(form.client) }}
+                          </div>
+                          <div class="form-group form-inline">
+                            <label class="col-md-3 col-form-label">Adresse</label>
+                              {{ form_widget(form.adresse) }}
+                          </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4">
+                          <div class="form-group">
+                            <label class="offset-11">Site</label>
+                          {{ form_widget(form.site) }}
+                          </div>
+                          <div class="form-group">
+                            <label class="offset-9">Interlocuteur</label>
+                              {{ form_widget(form.interlocuteur) }}
+                          </div>
+                          <div class="form-group">
+                            <label class="offset-10">Contact</label>
+                            {{ form_widget(form.contactinterlocuteur) }}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card">
+                      <div class="card-header"><div class="card-title">EQUIPEMENT</div></div>
+                        <div class="offset-4 col-md-6 col-lg-4">
+                          <div class="form-group">
+                            <label class="offset-4">Type instrument</label>
+                              {{ form_widget(form.typedequipement) }}
+                          </div>
+                        </div>
+                      <div class="row">
+                      <div class="offset-2 col-md-6 col-lg-4">
+                        <div class="form-group">
+                          <label class="col-md-3 col-form-label">Marque</label>
+                             {{ form_widget(form.marque) }}
+                        </div>
+                        <div class="form-group">
+                          <label>Modele</label>
+                            {{ form_widget(form.modele) }}
+                        </div>
+                        <div class="form-group">
+                          <label>Numero serie</label>
+                          {{ form_widget(form.numserie) }}
+                        </div>
+                        <div class="form-group">
+                          <label>Date intervention </label>
+                            {{ form_widget(form.dateintervention) }}
+                        </div> 
+                      </div>
+                      <div class="col-md-6 col-lg-4">
+                        <div class="form-group">
+                          <label class="offset-9">Portee max</label>
+                          {{ form_widget(form.porteemaxi) }}
+                        </div>
+                        <div class="form-group">
+                          <label class="offset-9">Portee mini</label>
+                            {{ form_widget(form.porteemini) }}
+                        </div> 
+                        <div class="form-group">
+                          <label class="offset-9">Echelon unite</label>
+                            {{ form_widget(form.echelonunite) }}
+                        </div>
+                        <div class="form-group">
+                          <label class="offset-10">Heure</label>
+                          {{ form_widget(form.heure) }}
+                        </div>
+                    </div>
+
+                      </div>
+                    </div>
+
+
+                      <div class="card">
+                      <div class="card-header"><div class="card-title">DEMANDE TRAVAUX</div></div>
+                      <div class="row">
+                        <div class="offset-1 col-md-6 col-lg-4">
+                            <div class="form-group">
+                                {{ form_widget(form.demandetravaux, {'attr':{'style':'width:1000px;'}}) }}
+                            </div>
+                        </div>
+                      </div>
+                      </div>
+                      <div class="card">
+                      <div class="card-header"><div class="card-title">DETAILS TRAVAUX</div></div>
+                      <div class="row">
+                        <div class="offset-1 col-md-6 col-lg-4">
+                            <div class="form-group">
+                                {{ form_widget(form.detailtravaux, {'attr':{'style':'width:1000px;'}}) }}
+                            </div> 
+                        </div>
+                      </div>
+                      </div>
+                      <div class="card">
+                      <div class="row">
+                        <div class="offset-4 col-md-6 col-lg-4">
+                          <div class="form-group">
+                            <label>Observation client</label>
+                            {{ form_widget(form.observationclient) }}
+                          </div>
+                        </div>
+                      </div>
+                      </div>
+                      <div class="card">
+                      <div class="row">
+                        <div class="offset-2 col-md-6 col-lg-4">
+                          <div class="form-group">
+                            <label>Equipement</label>
+                              {{ form_widget(form.equipement) }}
+                          </div> 
+                        </div> 
+                        <div class="col-md-6 col-lg-4">
+                          <div class="form-group">
+                            <label class="offset-10">Quantite</label>
+                            {{ form_widget(form.quantiteequipement) }}
+                          </div>
+                        </div>
+                      </div>
+                      </div>
+                      <div class="card">
+                      <div class="row">
+                        <div class="offset-2 col-md-6 col-lg-4">
+                          <div class="form-group">
+                            <label>Signataire</label>
+                              {{ form_widget(form.signataire) }}
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                          <div class="form-group">
+                            <label class="offset-9">Signature</label>
+                              {{ form_widget(form.signature) }}
+                          </div> 
+                        </div>
+                      </div>
+                      </div>
+              <div class="form-group mt-3">
+                <div class="offset-5 col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success">Valider</button>
+                            {{ form_end(form) }}                                       
+                <a href="{{ path('app_instrument') }}" class="btn btn-danger">Revenir à l'accueil</a>
+                </div>
+              </div> 
+</div>
+
+{% endblock %}

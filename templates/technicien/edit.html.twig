@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Client{% endblock %}
+
+{% block body %}  
+<br>
+<div class="card card-round">
+    <div class="card-header">
+      <div class="card-head-row">
+        <div class="card-title">Formulaire de modification d'un technicien</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6 col-lg-4">
+            {{ form_start(form) }}
+          <div class="form-group">
+            <label >Nom et prénom</label>
+            {{ form_widget(form.nometprenom) }}
+          </div>
+        </div> 
+        <div class="col-md-6 col-lg-4">
+          <div class="form-group">
+            <label >Contact</label>
+            {{ form_widget(form.contact) }}
+          </div>
+        </div>  
+        <div class="col-md-6 col-lg-4">
+          <div class="form-group">
+            <label >Adresse</label>
+            {{ form_widget(form.adresse) }}
+          </div>
+        </div>                    
+      </div>
+      <div class="form-group mt-3">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-success">{{ button_label|default('Modifier') }}</button>
+          <a href="{{ path('app_technicien') }}" class="btn btn-danger">Revenir</a>
+        </div>
+      </div> 
+          {{ form_end(form) }}                                
+
+    </div> 
+</div> 
+{% endblock %}

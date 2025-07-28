@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}  
+
+{% block title %}Présences & absences {% endblock %}
+
+{% block body %}
+
+     <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Modification de présence aux interventions</h3>
+        </div>
+        <div class="card card-body">
+
+                <!-- /.card-header -->
+                <div class="card-body">
+                    {% for message in app.flashes('present') %}
+                        <div class="primary">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+      
+
+                    <form method="post">
+                        <div class="row">
+                            <div class="md-col-5">
+                                <select name="intervention" id="intervention" class="select2" required="true">
+                                        <option value="{{ intervention.id }}"> {{ "%08d"|format(intervention.numintervention) }}-{{ intervention.demandetravaux }}-{{ intervention.dateintervention|date('d-m-Y')}}</option>
+                                </select>
+                            </div>
+
+
+
+                        </div>
+
+                        <hr style="visibility: hidden" />  
+
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Nom et Prénom</th>
+                                    <th>Contact</th>
+                                    <th>Présent</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    {% for technicien in techniciens %}
+                                    <tr>
+                                        <td> {{technicien.nometprenom|upper }}</td>
+                                        <td> {{technicien.contact|upper }}</td>
+                                        <td>
+                                        <input type="checkbox" name ="technicien[]" id="technicien[]" value="{{technicien.id}}"
+                                        {% for presence in presences %}
+                                        {% if  presence.technicien.id == technicien.id %} checked {% else %}{% endif %} title="Présent(e)"
+                                        {% endfor %}
+                                        ><br> 
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                            </tbody>
+                        </table>
+                        <button class="btn btn-primary offset-6">{{ button_label|default('Valider') }}</button>
+                        <a href="{{ path('app_instrument_presenceliste') }}" class="btn btn-success">Liste de présence</a>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+{% endblock %}

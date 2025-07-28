@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Index Intervention!{% endblock %}
+
+{% block body %}
+ <div class="row">
+              <div class="col-md-12">
+              <a href="{{ path('app_instrument_ficheintervention')}}"><button class="btn btn-secondary"><span class="btn-label"><i class="fa fa-plus"></i></span>Nouveau rapport d'intervention</button></a>
+              <a href="{{ path('app_instrument_presenceliste')}}"><button class="btn btn-secondary"><span class="btn-label"><i class="fa fa-bars"></i></span>Liste presence</button></a>  
+                <div class="card">
+                  <div class="card-header">
+                    <div class="d-flex align-items-center">
+                      <h4 class="card-title">Liste des Interventions</h4>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <!-- Modal -->
+                    <div class="table-responsive">
+                      <table class="display table table-striped table-hover">
+                        <thead>
+                          <tr>
+                            <th>Num intervention</th>
+                            <th>Demande travaux</th>
+                            <th>Date Intervention</th>
+                            <th>Site</th>
+                            <th>Interlocuteur</th>
+                            <th>Client</th>
+                            <th>Marque</th>
+                            <th>Modèle</th>
+                            <th style="width: 10%">Action</th>
+                          </tr>
+                        </thead>
+                        <tfoot>
+                          <tr>
+                            <th>Num intervention</th>
+                            <th>Demande travaux</th>
+                            <th>Date Intervention</th>
+                            <th>Site</th>
+                            <th>Interlocuteur</th>
+                            <th>Client</th>
+                            <th>Marque</th>
+                            <th>Modèle</th>
+                            <th style="width: 10%">Action</th>
+                          </tr>
+                        </tfoot>
+                        <tbody>
+                         {% for intervention in interventions %}
+                        <tr>
+                             <td>{{ "%08d"|format(intervention.numintervention)}}</td>
+                             <td>{{ intervention.demandetravaux}}</td>
+                             <td>{{ intervention.dateintervention|date("d/m/Y")}}</td>
+                             <td>{{ intervention.site}}</td>
+                             <td>{{ intervention.interlocuteur}}</td>
+                             <td>{{ intervention.client ? intervention.client.nom }}</td>
+                             <td>{{ intervention.marque ? intervention.marque.libelle}}</td>
+                             <td>{{ intervention.modele ? intervention.modele.libelle}}</td>
+                            <td>
+                              <div class="form-button-action">
+                                <button class="btn btn-link btn-primary btn-lg">
+                                  <a href="{{ path('app_instrument_edit_intervention', {'id': intervention.id})}}" ><i class="fa fa-edit"></i></a>
+                                </button> 
+                                {% if is_granted('ROLE_ADMIN') %}
+                                <button class="btn btn-link btn-danger btn-lg">
+                                  <a href="{{ path('app_instrument_intervention_delete', {'id': intervention.id})}}" ><i class="fa fa-trash"></i></a>
+                                </button>
+                                {% endif %}
+                              </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+{% endblock %}
+
